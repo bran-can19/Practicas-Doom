@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tablero de tareas</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="top">
+    <h1 class="title">Tablero de tareas</h1>
+
+    <form id="formTarea" class="row">
+      <input id="inputTitulo" type="text" placeholder="Título de la tarea" autocomplete="off" />
+      <select id="selectTag">
+        <option value="frontend">frontend</option>
+        <option value="backend">backend</option>
+        <option value="ux">ux</option>
+      </select>
+      <button id="btnAgregar" type="submit">Agregar</button>
+    </form>
+
+    <div class="row">
+      <input id="inputBuscar" type="search" placeholder="Buscar por texto..." />
+      <button class="btn" id="btnLimpiarBuscar" type="button">Limpiar</button>
+    </div>
+
+    <nav class="filters" aria-label="Filtros">
+      <button class="chip is-active" type="button" data-filter="all">Todas</button>
+      <button class="chip" type="button" data-filter="frontend">Frontend</button>
+      <button class="chip" type="button" data-filter="backend">Backend</button>
+      <button class="chip" type="button" data-filter="ux">UX</button>
+      <button class="chip" type="button" data-filter="fav">Favoritas</button>
+    </nav>
+
+    <section class="stats" aria-label="Estadísticas">
+      <p>Total: <strong id="statTotal">0</strong></p>
+      <p>Visibles: <strong id="statVisibles">0</strong></p>
+      <p>Favoritas: <strong id="statFavs">0</strong></p>
+    </section>
+  </header>
+
+  <main class="wrap">
+    <ul id="listaTareas" class="list" aria-label="Lista de tareas">
+      <li class="card" data-id="t1" data-tag="frontend" data-fav="0">
+        <div class="card__head">
+          <span class="badge">frontend</span>
+          <div class="actions">
+            <button class="icon" type="button" data-action="fav" aria-label="Marcar favorito">☆</button>
+            <button class="icon" type="button" data-action="done" aria-label="Marcar completada">✓</button>
+            <button class="icon danger" type="button" data-action="del" aria-label="Eliminar">🗑</button>
+          </div>
+        </div>
+        <p class="card__title">Revisar navbar responsive</p>
+      </li>
+
+      <li class="card" data-id="t2" data-tag="backend" data-fav="1">
+        <div class="card__head">
+          <span class="badge">backend</span>
+          <div class="actions">
+            <button class="icon" type="button" data-action="fav" aria-label="Marcar favorito">★</button>
+            <button class="icon" type="button" data-action="done" aria-label="Marcar completada">✓</button>
+            <button class="icon danger" type="button" data-action="del" aria-label="Eliminar">🗑</button>
+          </div>
+        </div>
+        <p class="card__title">Validar payload de registro</p>
+      </li>
+
+      <li class="card" data-id="t3" data-tag="ux" data-fav="0">
+        <div class="card__head">
+          <span class="badge">ux</span>
+          <div class="actions">
+            <button class="icon" type="button" data-action="fav" aria-label="Marcar favorito">☆</button>
+            <button class="icon" type="button" data-action="done" aria-label="Marcar completada">✓</button>
+            <button class="icon danger" type="button" data-action="del" aria-label="Eliminar">🗑</button>
+          </div>
+        </div>
+        <p class="card__title">Ajustar contraste en botones</p>
+      </li>
+    </ul>
+
+    <p id="emptyState" class="empty is-hidden">No hay tareas visibles con los filtros actuales.</p>
+  </main>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
