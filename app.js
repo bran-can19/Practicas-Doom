@@ -30,7 +30,10 @@ const statTotal = $('#statTotal');
 const statVisibles = $('#statVisibles');
 const statFavs = $('#statFavs');
 const filtros = document.querySelector('.filters');
-let activeFilter = 'all';
+const inputBuscar = $('#inputBuscar');
+const btnLimpiarBuscar = $('#btnLimpiarBuscar');
+let activeFilter = 'all'; // filtrar categorias 
+let searchTerm = '';
 
 const actualizarStats = () => {
     const tarjetas = Array.from(listaTareas.children);
@@ -66,14 +69,19 @@ btnAgregar.addEventListener('click', (e) => {
     });
     listaTareas.append(nuevaTarea);
     inputTitulo.value = '';
+// Aplicar busqueda
     applyFilter(activeFilter);
 });
-// Filtros de busqueda
-
+// Filtros de búsqueda 
 const applyFilter = (filter) => {
     const tarjetas = Array.from(listaTareas.children);
+    const term = searchTerm.trim().toLowerCase();
+
+    console.log('applyFilter', { filter, term, total: tarjetas.length });
+
     tarjetas.forEach((tarjeta) => {
         let hide = false;
+
         if (filter === 'all') {
             hide = false;
         } else if (filter === 'fav') {
@@ -81,12 +89,19 @@ const applyFilter = (filter) => {
         } else {
             hide = tarjeta.dataset.tag !== filter;
         }
+
+        if (term) {
+            const title = tarjeta.querySelector('.card__title')?.textContent?.toLowerCase() || '';
+            if (!title.includes(term)) {
+                hide = true;
+            }
+        }
+
         tarjeta.classList.toggle('is-hidden', hide);
     });
 
     actualizarStats();
 };
-
 filtros.addEventListener('click', (e) => {
     const btn = e.target.closest('button[data-filter]');
     if (!btn) return;
@@ -97,6 +112,17 @@ filtros.addEventListener('click', (e) => {
         b.classList.toggle('is-active', b === btn);
     });
 
+    applyFilter(activeFilter);
+});
+
+inputBuscar.addEventListener('input', (e) => {
+    searchTerm = e.target.value || '';
+    console.log('search term:', searchTerm);
+    applyFilter(activeFilter);
+});
+btnLimpiarBuscar.addEventListener('click', () => {
+    searchTerm = '';
+    inputBuscar.value = '';
     applyFilter(activeFilter);
 });
 
