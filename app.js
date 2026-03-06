@@ -120,6 +120,8 @@ inputBuscar.addEventListener('input', (e) => {
     console.log('search term:', searchTerm);
     applyFilter(activeFilter);
 });
+
+// Limpiar búsqueda por texto
 btnLimpiarBuscar.addEventListener('click', () => {
     searchTerm = '';
     inputBuscar.value = '';
