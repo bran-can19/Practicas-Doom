@@ -82,12 +82,25 @@ listaTareas.addEventListener('click', (e) => {
         return;
     }
 
-    // Marca como completada o incompleta
+    // Marca como completada/incompleta
+    //✔️ incompleta, ✔️✔️ completada
     if (action === 'done') {
         const isDone = tarjeta.classList.toggle('is-done');
         btn.setAttribute('aria-label', isDone ? 'Marcar incompleta' : 'Marcar completada');
-        btn.textContent = isDone ? '✅' : '✓';
+        btn.textContent = isDone ? '✔️' : '✔️✔️';
         console.log('toggle done', tarjeta.dataset.id, isDone);
+        return;
+    }
+
+    // Marca como favorita/no favorita
+    if (action === 'fav') {
+        const isFav = tarjeta.dataset.fav === '1';
+        tarjeta.dataset.fav = isFav ? '0' : '1';
+        btn.setAttribute('aria-label', isFav ? 'Quitar de favoritas' : 'Marcar favorita');
+        btn.textContent = isFav ? '☆' : '⭐';
+        tarjeta.classList.toggle('is-fav', !isFav);
+        actualizarStats();
+        console.log('toggle fav', tarjeta.dataset.id, tarjeta.dataset.fav);
     }
 });
 

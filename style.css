@@ -21,6 +21,8 @@ button:hover{border-color:var(--accent)}
 .card.is-done{opacity:.65;box-shadow:0 0 0 1px rgba(122,162,255,.5);background:rgba(122,162,255,.08)}
 .card.is-done .card__title{text-decoration:line-through}
 .card.is-done .icon[data-action="done"]{color:var(--accent)}
+.card.is-fav{box-shadow:0 0 0 1px rgba(255,219,88,.6);background:rgba(255,219,88,.05)}
+.card.is-fav .icon[data-action="fav"]{color:var(--accent)}
 .card__head{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .badge{font-size:12px;color:var(--muted);border:1px solid var(--line);padding:4px 8px;border-radius:999px}
 .actions{display:flex;gap:8px}
