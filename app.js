@@ -79,5 +79,15 @@ listaTareas.addEventListener('click', (e) => {
     if (action === 'del') {
         tarjeta.remove();
         actualizarStats();
+        return;
+    }
+
+    // Marca como completada o incompleta
+    if (action === 'done') {
+        const isDone = tarjeta.classList.toggle('is-done');
+        btn.setAttribute('aria-label', isDone ? 'Marcar incompleta' : 'Marcar completada');
+        btn.textContent = isDone ? '✅' : '✓';
+        console.log('toggle done', tarjeta.dataset.id, isDone);
     }
 });
+

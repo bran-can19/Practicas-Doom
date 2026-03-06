@@ -18,7 +18,9 @@ button:hover{border-color:var(--accent)}
 .stats{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;color:var(--muted)}
 .list{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
 .card{border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:10px}
-.card.is-done{opacity:.65}
+.card.is-done{opacity:.65;box-shadow:0 0 0 1px rgba(122,162,255,.5);background:rgba(122,162,255,.08)}
+.card.is-done .card__title{text-decoration:line-through}
+.card.is-done .icon[data-action="done"]{color:var(--accent)}
 .card__head{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .badge{font-size:12px;color:var(--muted);border:1px solid var(--line);padding:4px 8px;border-radius:999px}
 .actions{display:flex;gap:8px}
