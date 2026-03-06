@@ -66,3 +66,18 @@ btnAgregar.addEventListener('click', (e) => {
     inputTitulo.value = '';
     actualizarStats();
 });
+
+// Eliminar tarjeta 
+listaTareas.addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-action]');
+    if (!btn) return;
+
+    const action = btn.dataset.action;
+    const tarjeta = btn.closest('.card');
+    if (!tarjeta) return;
+
+    if (action === 'del') {
+        tarjeta.remove();
+        actualizarStats();
+    }
+});
