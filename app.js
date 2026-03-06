@@ -34,7 +34,7 @@ const inputBuscar = $('#inputBuscar');
 const btnLimpiarBuscar = $('#btnLimpiarBuscar');
 let activeFilter = 'all'; // filtrar categorias 
 let searchTerm = '';
-
+// Función para actualizar estatadisticas al actulizar crearelimnar se  actualiza de forma automatica
 const actualizarStats = () => {
     const tarjetas = Array.from(listaTareas.children);
     const total = tarjetas.length;
