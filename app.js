@@ -45,6 +45,7 @@ const actualizarStats = () => {
     statVisibles.textContent = visibles;
     statFavs.textContent = favs;
 
+    // Mostrar mensaje cuando no hay tareas visibles 
     emptyState.classList.toggle('is-hidden', visibles !== 0);
 };
 
