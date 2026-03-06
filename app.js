@@ -29,6 +29,8 @@ const emptyState = $('#emptyState');
 const statTotal = $('#statTotal');
 const statVisibles = $('#statVisibles');
 const statFavs = $('#statFavs');
+const filtros = document.querySelector('.filters');
+let activeFilter = 'all';
 
 const actualizarStats = () => {
     const tarjetas = Array.from(listaTareas.children);
@@ -64,7 +66,38 @@ btnAgregar.addEventListener('click', (e) => {
     });
     listaTareas.append(nuevaTarea);
     inputTitulo.value = '';
+    applyFilter(activeFilter);
+});
+// Filtros de busqueda
+
+const applyFilter = (filter) => {
+    const tarjetas = Array.from(listaTareas.children);
+    tarjetas.forEach((tarjeta) => {
+        let hide = false;
+        if (filter === 'all') {
+            hide = false;
+        } else if (filter === 'fav') {
+            hide = tarjeta.dataset.fav !== '1';
+        } else {
+            hide = tarjeta.dataset.tag !== filter;
+        }
+        tarjeta.classList.toggle('is-hidden', hide);
+    });
+
     actualizarStats();
+};
+
+filtros.addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-filter]');
+    if (!btn) return;
+
+    activeFilter = btn.dataset.filter;
+
+    filtros.querySelectorAll('button').forEach((b) => {
+        b.classList.toggle('is-active', b === btn);
+    });
+
+    applyFilter(activeFilter);
 });
 
 // Eliminar tarjeta 
@@ -99,7 +132,7 @@ listaTareas.addEventListener('click', (e) => {
         btn.setAttribute('aria-label', isFav ? 'Quitar de favoritas' : 'Marcar favorita');
         btn.textContent = isFav ? '☆' : '⭐';
         tarjeta.classList.toggle('is-fav', !isFav);
-        actualizarStats();
+        applyFilter(activeFilter);
         console.log('toggle fav', tarjeta.dataset.id, tarjeta.dataset.fav);
     }
 });
